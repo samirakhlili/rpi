@@ -1,0 +1,24 @@
+{% if info_rspi_list %}
+    <table border="1px solid black" width="100%">
+        <tr>
+            <th>temperature</th>
+            <th>seaLevel</th>
+            <th>time</th>
+            <th>date</th>
+            <th>serialTag</th>
+            <th>position</th>
+        </tr>
+        {% for rspi in info_rspi_list %}
+            <tr>
+                <td>{{ rspi.temperature }}</td>
+                <td>{{ rspi.seaLevel }}</td>
+                <td>{{ rspi.time }}</td>
+                <td>{{ rspi.date }}</td>
+                <td>{{ rspi.serialTag }}</td>
+                <td>{{ rspi.position }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% else %}
+    <p>No rspi Info are available.</p>
+{% endif %}

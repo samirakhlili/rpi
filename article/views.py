@@ -1,10 +1,21 @@
+from django.http import HttpResponse
+from django.template import loader
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from article.serializers import ArticleSerializer, InforspSerializer
-from .models import Article,InfoRsp
+from .models import Article, InfoRsp
+
 
 class InfoRspView(APIView):
+
+    def index(request):
+        infoRsp_list = InfoRsp.objects.all()
+        template = loader.get_template('articles/index.html')
+        context = {
+            'info_rspi_list': infoRsp_list,
+        }
+        return HttpResponse(template.render(context, request))
 
     def get(self, request):
         infoRsp = InfoRsp.objects.all()
@@ -20,6 +31,7 @@ class InfoRspView(APIView):
         if serializer.is_valid(raise_exception=True):
             info_saved = serializer.save()
         return Response({"success": "Article '{}' created successfully".format(info_saved.time)})
+
 
 class ArticleView(APIView):
 

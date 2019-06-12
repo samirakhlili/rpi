@@ -27,4 +27,4 @@ class InfoRsp(models.Model):
     position = models.TextField()
 
     def __str__(self):
-        return self.time
+        return "time: "+self.time + " date: "+self.date
